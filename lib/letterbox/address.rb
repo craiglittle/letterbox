@@ -5,17 +5,17 @@ module Letterbox
 
     include Celluloid
 
-    attr_reader :directory, :unit_of_work
+    attr_reader :exchange, :unit_of_work
 
-    def initialize(directory, unit_of_work)
-      @directory    = directory
+    def initialize(exchange, unit_of_work)
+      @exchange     = exchange
       @unit_of_work = unit_of_work
     end
 
     def process(payload)
       unit_of_work.new(payload).perform
 
-      directory.async.return(name)
+      exchange.async.completed_by(name)
     end
 
   end
