@@ -11,7 +11,7 @@ Gem::Specification.new do |spec|
   spec.license       = 'MIT'
 
   spec.require_paths = ['lib']
-  spec.files         = `git ls-files -z`.split('\x0')
+  spec.files         = `git ls-files`.split($\)
   spec.test_files    = spec.files.grep(%r{^spec/})
 
   spec.add_runtime_dependency 'celluloid', '~> 0.15'
